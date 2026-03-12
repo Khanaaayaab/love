@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>A Special Message</title>
+
+<style>
+
+body{
+margin:0;
+background:black;
+font-family:Georgia,serif;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+/* intro text */
+
+#intro{
+position:absolute;
+top:40%;
+width:100%;
+font-size:34px;
+letter-spacing:2px;
+animation:fade 5s forwards;
+}
+
+@keyframes fade{
+0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}
+
+/* ring scene */
+
+#ringScene{
+display:none;
+margin-top:150px;
+perspective:1000px;
+cursor:pointer;
+}
+
+.ring{
+font-size:90px;
+animation:spin 4s linear infinite;
+}
+
+@keyframes spin{
+0%{transform:rotateY(0)}
+100%{transform:rotateY(360deg)}
+}
+
+#openBtn{
+display:none;
+margin-top:30px;
+padding:14px 45px;
+font-size:20px;
+background:gold;
+border:none;
+border-radius:40px;
+cursor:pointer;
+}
+
+/* envelope */
+
+#envelope{
+display:none;
+margin-top:120px;
+font-size:90px;
+cursor:pointer;
+}
+
+/* golden letter */
+
+#letter{
+display:none;
+max-width:700px;
+margin:auto;
+margin-top:40px;
+padding:40px;
+background:#111;
+border:2px solid gold;
+border-radius:10px;
+color:gold;
+font-size:18px;
+line-height:1.8;
+box-shadow:0 0 25px gold;
+}
+
+#letter h2{
+margin-top:0;
+}
+
+button{
+padding:12px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+margin:10px;
+cursor:pointer;
+}
+
+.yes{
+background:gold;
+color:black;
+}
+
+.time{
+background:#555;
+color:white;
+}
+
+#thanks{
+display:none;
+margin-top:120px;
+font-size:30px;
+color:gold;
+}
+
+/* floating hearts */
+
+.heart{
+position:fixed;
+bottom:-20px;
+color:red;
+animation:float 7s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-100vh)}
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7e4b4c55f1.mp3?filename=romantic-piano-110189.mp3">
+</audio>
+
+<!-- Intro -->
+
+<div id="intro">
+Sometimes in life...<br>
+Allah sends someone special
+</div>
+
+<!-- Ring Scene -->
+
+<div id="ringScene">
+<div class="ring">💍</div>
+</div>
+
+<button id="openBtn">Open My Heart</button>
+
+<!-- Envelope -->
+
+<div id="envelope">💌</div>
+
+<!-- Letter -->
+
+<div id="letter">
+
+<h2>A Message From My Heart</h2>
+
+<p>
+With Allah’s blessings, I would be honored if you accepted my proposal for Nikkah.  
+I wish to spend my life with you, Insha’Allah.
+</p>
+
+<p>
+Har dua mein sirf aap ka naam hai,  
+har khushi mein sirf aap ka saath chahiye.
+</p>
+
+<p>
+Allah ke saath is mohabbat ko Nikkah ke zariye qaim karna chahta hoon.  
+Kya aap qubool karengi?
+</p>
+
+<br>
+
+<button class="yes" onclick="answer()">Yes</button>
+<button class="time" onclick="answer()">Give me some time</button>
+
+</div>
+
+<!-- Thank you -->
+
+<div id="thanks">
+❤️ Thank you for your time ❤️
+</div>
+
+<script>
+
+/* intro transition */
+
+setTimeout(()=>{
+document.getElementById("intro").style.display="none"
+document.getElementById("ringScene").style.display="block"
+},5000)
+
+/* floating hearts */
+
+setInterval(()=>{
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+heart.style.left=Math.random()*100+"%"
+heart.style.fontSize=(15+Math.random()*25)+"px"
+document.body.appendChild(heart)
+setTimeout(()=>heart.remove(),7000)
+},600)
+
+/* ring click */
+
+document.getElementById("ringScene").onclick=function(){
+
+document.getElementById("music").play()
+
+document.getElementById("openBtn").style.display="inline-block"
+
+}
+
+/* open envelope */
+
+document.getElementById("openBtn").onclick=function(){
+
+document.getElementById("ringScene").style.display="none"
+document.getElementById("openBtn").style.display="none"
+document.getElementById("envelope").style.display="block"
+
+}
+
+document.getElementById("envelope").onclick=function(){
+
+document.getElementById("envelope").style.display="none"
+document.getElementById("letter").style.display="block"
+
+}
+
+/* answer */
+
+function answer(){
+
+document.getElementById("letter").style.display="none"
+document.getElementById("thanks").style.display="block"
+
+}
+
+</script>
+
+</body>
+</html>
